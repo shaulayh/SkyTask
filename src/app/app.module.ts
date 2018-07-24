@@ -1,18 +1,29 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
+import {DetailsComponent} from './details/details.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SubInputComponent} from './sub-input/sub-input.component';
+import {DetailsService} from './details/details.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DetailsComponent,
+    SubInputComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    DetailsService
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

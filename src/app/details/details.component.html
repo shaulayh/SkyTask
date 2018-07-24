@@ -1,0 +1,84 @@
+<form [formGroup]="detailForm" novalidate (ngSubmit)="onSubmit(detailForm)">
+  <h1>Form builder</h1>
+  <!---Survey Section -->
+  <div formArrayName="inputQuestion">
+    <div *ngFor="let section of getInputQuestion(detailForm); let i = index">
+      <div [formGroupName]="i">
+        <hr>
+        <div class="question-container" formArrayName="questions">
+
+          <div *ngFor="let question of getQuestions(section); let j = index">
+
+            <div [formGroupName]="j">
+              <div class="container-fluid">
+                <div class="col-10">
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Question</label>
+                    <div class="col-sm-10">
+                      <input
+                        [formControlName]="'questionTitle'"
+                        type="Text"
+                        class="form-control">
+                    </div>
+                  </div>
+                  <div *ngIf="!question.controls['questionType'].valid" class="form-group row">
+                    <div class="col-sm-2">
+                      <label>Type</label>
+                    </div>
+                    <div class="col-sm-10">
+                      <select formControlName="questionType"
+                              class="form-control">
+                        <option value="YES?NO">YES?NO</option>
+                        <option value="Number">Number</option>
+                        <option value="TEXT">TEXT</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-sm-2">
+                      <label>Answer</label>
+                    </div>
+                    <div class="col-sm-10">
+                      <div *ngIf="question.controls['questionType'].value === 'YES?NO'">
+                        <label class="radio-inline"><input formControlName="questionAnswer" value="YES"
+                                                           type="radio">YES</label>
+                        <label class="radio-inline"><input formControlName="questionAnswer" value="NO"
+                                                           type="radio">NO</label>
+                      </div>
+                      <div *ngIf="question.controls['questionType'].value === 'Number'">
+                        <input formControlName="questionAnswer" type="number" class="form-control">
+                      </div>
+                      <div *ngIf="question.controls['questionType'].value === 'TEXT'">
+                        <input formControlName="questionAnswer" type="text" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="row buttons-group">
+                    <br>
+                    <button [disabled]="disableButton[i][j]" (click)="submitSubInput(i,j)" class="buttons">Add
+                      Sub-Input
+                    </button>
+                    <button *ngIf="getQuestions(section).length > 1" (click)="removeQuestion(i,j)" class="buttons">
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+          </div>
+
+          <br>
+        </div>
+        <!-- End Question -->
+        <button *ngIf="getInputQuestion(detailForm).length>1" (click)="removeSection(i)">Delete Input</button>
+        <hr>
+      </div>
+    </div>
+  </div>
+  <!-- End Section -->
+</form>
+
+<button (click)="addInputQuestion()">Add Input</button>
+<pre> {{detailForm.value | json}} </pre>

@@ -14,7 +14,7 @@ export class DetailsService {
     new Question('How many wheels on your car?', InputType.NUMBER, 3),
     new Question('Has your car been recalled?', InputType.RADIO, 'NO'),
     new Question('What year was your building built?', InputType.NUMBER, 4),
-    new Question('What is your year date of birth?', InputType.TEXT, 1990),
+    new Question('What is your year date of birth?', InputType.NUMBER, 1990),
 
   ];
 
@@ -33,7 +33,7 @@ export class DetailsService {
       new Question('How many wheels on your car?', InputType.NUMBER, 3),
       new Question('Has your car been recalled?', InputType.RADIO, 'NO'),
       new Question('What year was your building built?', InputType.NUMBER, 4),
-      new Question('What is your year date of birth?', InputType.TEXT, 1990),
+      new Question('What is your year date of birth?', InputType.NUMBER, 1990),
     ]),
     new SubQuestion([
       new Question('Whats your company name?', InputType.TEXT, ''),

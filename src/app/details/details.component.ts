@@ -48,8 +48,8 @@ export class DetailsComponent implements OnInit {
     if (check_y) {
       return new FormGroup({
         questionTitle: new FormControl('Enter desire question'),
-        questionType: new FormControl(),
-        questionAnswer: new FormControl()
+        questionType: new FormControl('', Validators.required),
+        questionAnswer: new FormControl('', Validators.required)
       });
     } else {
       const innerText = this.subQuestion[this.indexX].getQuestions()[this.indexY].getdesciption();

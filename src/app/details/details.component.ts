@@ -3,6 +3,7 @@ import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Question} from './question.model';
 import {DetailsService} from './details.service';
 import {SubQuestion} from './subquestion.model';
+import {LocalStorageService} from 'ngx-webstorage';
 
 
 @Component({
@@ -14,7 +15,6 @@ export class DetailsComponent implements OnInit {
 
   detailForm: FormGroup;
 
-
   listOfQuestions: Question[];
 
   subQuestion: SubQuestion[];
@@ -24,7 +24,8 @@ export class DetailsComponent implements OnInit {
 
   disableButton: boolean[][] = [[], []];
 
-  constructor(private listOfQuestionService: DetailsService) {
+  constructor(private listOfQuestionService: DetailsService,
+              private localStorage: LocalStorageService) {
   }
 
   ngOnInit() {
@@ -74,6 +75,7 @@ export class DetailsComponent implements OnInit {
     this.indexY = control.length;
     this.indexX = i;
     control.push(this.initQuestion());
+    this.localStorage.store(i.toString(), JSON.stringify(control.getRawValue()));
   }
 
   getInputQuestion(form) {
@@ -81,7 +83,6 @@ export class DetailsComponent implements OnInit {
   }
 
   getQuestions(form) {
-    console.log(form.controls.questions.controls);
     return form.controls.questions.controls;
   }
 

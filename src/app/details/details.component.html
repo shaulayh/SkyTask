@@ -5,7 +5,7 @@
     <div *ngFor="let section of getInputQuestion(detailForm); let i = index">
       <div [formGroupName]="i">
         <hr>
-        <div class="question-container" formArrayName="questions">
+        <div formArrayName="questions" class="question-container">
 
           <div *ngFor="let question of getQuestions(section); let j = index">
 
@@ -68,16 +68,13 @@
             </div>
             <br>
           </div>
-
           <br>
         </div>
-        <!-- End Question -->
         <button *ngIf="getInputQuestion(detailForm).length>1" (click)="removeSection(i)">Delete Input</button>
         <hr>
       </div>
     </div>
   </div>
-  <!-- End Section -->
 </form>
 
 <button (click)="addInputQuestion()">Add Input</button>

@@ -7,6 +7,7 @@ import {DetailsComponent} from './details/details.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SubInputComponent} from './sub-input/sub-input.component';
 import {DetailsService} from './details/details.service';
+import {Ng2Webstorage} from 'ngx-webstorage';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {DetailsService} from './details/details.service';
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2Webstorage
   ],
   providers: [
     DetailsService

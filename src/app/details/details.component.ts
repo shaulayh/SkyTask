@@ -95,7 +95,7 @@ export class DetailsComponent implements OnInit {
   removeSection(i) {
     const control = <FormArray>this.detailForm.get('inputQuestion');
     control.removeAt(i);
-
+    this.localStorage.clear(i.toString());
   }
 
   submitSubInput(i: number, j: number) {
